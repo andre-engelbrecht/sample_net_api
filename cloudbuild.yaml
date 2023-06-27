@@ -4,4 +4,4 @@
       - 'build'
       - '-t'
       - 'gcr.io/$PROJECT_ID/sample-api'
-      - '.'
+      - './Sample_API/Sample_API.API/'
