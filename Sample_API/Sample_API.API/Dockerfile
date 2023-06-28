@@ -32,7 +32,7 @@ FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
 COPY ["Sample_API.API.csproj", "Sample_API.API/"]
 RUN dotnet restore "Sample_API.API/Sample_API.API.csproj"
-COPY ./Sample_API/Sample_API.API .
+COPY . .
 WORKDIR "/src/Sample_API.API"
 RUN ls -a
 RUN dotnet build "Sample_API.API.csproj" -c Release -o /app/build
