@@ -59,6 +59,7 @@ COPY ["Sample_API/Sample_API.API/Sample_API.API.csproj", "Sample_API.API/"]
 RUN dotnet restore "Sample_API.API/Sample_API.API.csproj"
 COPY . .
 WORKDIR "/src/Sample_API.API"
+RUN ls -a
 RUN dotnet build "Sample_API.API.csproj" -c Release -o /app/build
 
 FROM build AS publish
