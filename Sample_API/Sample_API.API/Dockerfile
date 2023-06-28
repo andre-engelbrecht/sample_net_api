@@ -66,6 +66,7 @@ FROM build AS publish
 RUN dotnet publish "Sample_API.API.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
 FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS final
+ENV ASPNETCORE_URLS=http://*:$PORT  # Set the environment variable to listen on the specified port
 WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "Sample_API.API.dll"]
