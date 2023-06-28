@@ -63,7 +63,7 @@ RUN ls -a
 RUN dotnet build "Sample_API.API.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "Sample_API.API.csproj" -c Release -o /app/publish 
+RUN dotnet publish "Sample_API.API.csproj" -c Release -o /app/publish --self-contained false
 #/p:UseAppHost=false
 
 FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS final
