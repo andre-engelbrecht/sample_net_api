@@ -1,3 +1,5 @@
+using Sample_API.Core.Services;
+
 namespace Sample_API.API
 {
     public class Program
@@ -19,6 +21,9 @@ namespace Sample_API.API
             {
                 builder.WebHost.UseUrls($"http://0.0.0.0:{Environment.GetEnvironmentVariable("PORT")}");
             }
+
+            // Add services
+            builder.Services.AddScoped<WeatherForecastService>();
 
             var app = builder.Build();
 

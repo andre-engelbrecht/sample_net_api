@@ -1,4 +1,4 @@
-namespace Sample_API.API
+namespace Sample_API.Core.Models
 {
     public class WeatherForecast
     {
