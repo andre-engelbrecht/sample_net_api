@@ -64,6 +64,7 @@ RUN dotnet build "Sample_API.API.csproj" -c Release -o /app/build
 
 FROM build AS publish
 RUN dotnet publish "Sample_API.API.csproj" -c Release -o /app/publish /p:UseAppHost=true
+RUN ls -l /app/publish
 
 FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS final
 #Set the environment variable to listen on the specified port
