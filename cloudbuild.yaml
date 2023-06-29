@@ -28,7 +28,7 @@ steps:
     args:
       - 'run'
       - 'deploy'
-      - 'sample-api'  # Update with your service name
+      - 'sample-net-api'  # Update with your service name
       - '--image=gcr.io/$PROJECT_ID/sample-api'
       - '--region=us-central1'
       - '--platform=managed'
