@@ -30,7 +30,7 @@ namespace Sample_API.API.Controllers
             .ToArray();
         }
 
-        [HttpGet("TestUpdate3")]
+        [HttpGet("TestUpdate4")]
         public string TestUpdate()
         {
             return DateTime.Now.ToString();
