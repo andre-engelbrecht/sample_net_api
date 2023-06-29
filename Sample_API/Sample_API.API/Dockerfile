@@ -71,4 +71,5 @@ FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS final
 ENV ASPNETCORE_URLS=http://*:$PORT  
 WORKDIR /app
 COPY --from=publish /app/publish .
+RUN ls -l /app
 ENTRYPOINT ["dotnet", "Sample_API.API.dll"]
