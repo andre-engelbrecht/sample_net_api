@@ -29,5 +29,11 @@ namespace Sample_API.API.Controllers
             })
             .ToArray();
         }
+
+        [HttpGet("TestUpdate")]
+        public string TestUpdate()
+        {
+            return DateTime.Now.ToString();
+        }
     }
 }
