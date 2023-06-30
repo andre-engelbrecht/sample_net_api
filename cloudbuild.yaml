@@ -19,7 +19,7 @@
       - '--image=gcr.io/$PROJECT_ID/sample-api'
       - '--region=us-central1'
       - '--platform=managed'
-      - '--tag=abc123'
+      - '--tag=!join [r, $REVISION_ID]'
       # Additional deployment options go here
 
 images:
