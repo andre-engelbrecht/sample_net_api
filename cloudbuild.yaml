@@ -19,8 +19,17 @@
       - '--image=gcr.io/$PROJECT_ID/sample-api'
       - '--region=us-central1'
       - '--platform=managed'
-      - '--revision-suffix=$SHORT_SHA'  # Use unique build ID as the revision suffix
       # Additional deployment options go here
+
+  - name: 'gcr.io/cloud-builders/gcloud'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        export REVISION_NAME=$(gcloud run revisions list --platform=managed --service=sample-net-api --format="value(metadata.name)")
+        export REVISION_URL=$(gcloud run services describe sample-net-api --platform=managed --region=us-central1 --format="value(status.url)")
+        export REVISION_TAG=$(echo $REVISION_URL | awk -F/ '{print $NF}')
+        gcloud run revisions update $REVISION_NAME --platform=managed --service=sample-net-api --region=us-central1 --set-labels=revision-tag=$REVISION_TAG
 
 images:
   - 'gcr.io/$PROJECT_ID/sample-api'
