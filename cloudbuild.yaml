@@ -19,6 +19,7 @@
       - '--image=gcr.io/$PROJECT_ID/sample-api'
       - '--region=us-central1'
       - '--platform=managed'
+      - '--update-env-vars=DUMMY_VARIABLE=unused'  # Add this line to force a configuration change
       # Additional deployment options go here
 
   - name: 'gcr.io/cloud-builders/gcloud'
