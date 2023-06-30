@@ -19,7 +19,7 @@
       - '--image=gcr.io/$PROJECT_ID/sample-api'
       - '--region=us-central1'
       - '--platform=managed'
-      - '--tag=$SHORT_SHA'
+      - '--tag=abc123'
       # Additional deployment options go here
 
 images:
