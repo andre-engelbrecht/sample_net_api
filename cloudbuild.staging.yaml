@@ -15,7 +15,7 @@
     args:
       - 'run'
       - 'deploy'
-      - 'sample-api-dev'  # Update with your service name
+      - 'sample-api-stage'  # Update with your service name
       - '--image=gcr.io/$PROJECT_ID/sample-api'
       - '--region=us-central1'
       - '--platform=managed'
