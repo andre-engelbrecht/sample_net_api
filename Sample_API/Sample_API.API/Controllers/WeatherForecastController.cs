@@ -5,7 +5,7 @@ using Sample_API.Core.Services;
 namespace Sample_API.API.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class WeatherForecastController : ControllerBase
     {
         private WeatherForecastService weatherForecastService;
