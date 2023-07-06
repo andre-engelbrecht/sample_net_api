@@ -5,7 +5,7 @@
       - '-t'
       - 'gcr.io/$PROJECT_ID/sample-api'
       - '-f'
-      - 'Sample_API/Sample_API.API/Dockerfile'  # Update the path to your Dockerfile
+      - 'Sample_API/Sample_API.API/Dockerfile.Staging/Dockerfile'  # Update the path to your Dockerfile
       - '.'  # Set the build context to the root directory
 
   - name: 'gcr.io/cloud-builders/docker'
