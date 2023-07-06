@@ -19,7 +19,7 @@
       - '--image=gcr.io/$PROJECT_ID/sample-api'
       - '--region=us-central1'
       - '--platform=managed'
-      - '--tag=d$SHORT_SHA'  # Tag revisions with a unique "revision URL tags"
+      - '--tag=dev-$SHORT_SHA'  # Tag revisions with a unique "revision URL tags"
 
 images:
   - 'gcr.io/$PROJECT_ID/sample-api'
