@@ -20,20 +20,15 @@
       - '--region=us-central1'
       - '--platform=managed'
       - '--tag=dev-$SHORT_SHA'  # Tag revisions with a unique "revision URL tags"
-      - '--format=value(status.url)' # Flag ensures that only the URL is returned, which can be captured as an output variable.
-      - '--quiet'
-    id: 'Deploy Cloud Run service'
-    entrypoint: 'bash'
-    env:
-      - '_DIRECT_SERVICE_URL=$(cat ${_DEPLOY_CLOUD_RUN_SERVICE_OUTPUT})'
-    volumes:
-      - name: 'cloudbuild'
-        path: '/workspace'
-    waitFor:
-      - 'Deploy Cloud Run service'
 
-substitutions:
-  _DIRECT_SERVICE_URL: 'YOUR_DYNAMIC_SERVICE_URL'
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args:
+      - 'builds'
+      - 'describe'
+      - '$BUILD_ID'
+    id: 'Get Build Details'
+    env:
+      - 'DIRECT_REVISION_URL=$(gcloud builds describe $BUILD_ID --format="value(status.url)")'
 
 images:
   - 'gcr.io/$PROJECT_ID/sample-api'
