@@ -22,7 +22,7 @@
       - '--tag=dev-$SHORT_SHA'  # Tag revisions with a unique "revision URL tags"
 
 substitutions:
-    _DEV_SERVICE_URL: 'https://dev-$SHORT_SHA---sample-api-dev-ccezryvcoa-uc.a.run.app/'
+    _DEV_SERVICE_URL: 'https://dev-${SHORT_SHA}---sample-api-dev-ccezryvcoa-uc.a.run.app/'
 
 images:
   - 'gcr.io/$PROJECT_ID/sample-api'
