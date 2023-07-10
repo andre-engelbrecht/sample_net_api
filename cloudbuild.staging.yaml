@@ -20,5 +20,9 @@
       - '--region=us-central1'
       - '--platform=managed'
 
+substitutions:
+    _DEV_SERVICE_URL: 'https://sample-api-stage-ccezryvcoa-uc.a.run.app'
+    _ENVIRONMENT: 'Staging'
+
 images:
   - 'gcr.io/$PROJECT_ID/sample-api'
