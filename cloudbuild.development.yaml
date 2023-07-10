@@ -21,14 +21,8 @@
       - '--platform=managed'
       - '--tag=dev-$SHORT_SHA'  # Tag revisions with a unique "revision URL tags"
 
-  - name: 'gcr.io/cloud-builders/gcloud'
-    args:
-      - 'builds'
-      - 'describe'
-      - '$BUILD_ID'
-    id: 'Get Build Details'
-    env:
-      - 'DIRECT_REVISION_URL=$(gcloud builds describe $BUILD_ID --format="value(status.url)")'
+substitutions:
+    _DEV_SERVICE_URL: 'https://dev-$SHORT_SHA---sample-api-dev-ccezryvcoa-uc.a.run.app/'
 
 images:
   - 'gcr.io/$PROJECT_ID/sample-api'
