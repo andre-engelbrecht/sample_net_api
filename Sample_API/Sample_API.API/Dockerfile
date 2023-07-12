@@ -12,7 +12,7 @@ FROM build AS publish
 # Publish
 RUN dotnet publish "Sample_API.API.csproj" -c Release -o /app/publish /p:UseAppHost=true
 # Run DB migrations
-RUN dotnet tool install --global dotnet-ef --version 7.0.9
+RUN dotnet tool restore
 RUN dotnet ef database update
 
 FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS final
