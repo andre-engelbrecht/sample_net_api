@@ -11,6 +11,8 @@ RUN dotnet build "Sample_API.API.csproj" -c Release -o /app/build
 FROM build AS publish
 # Publish
 RUN dotnet publish "Sample_API.API.csproj" -c Release -o /app/publish /p:UseAppHost=true
+# Run DB migrations
+RUN dotnet ef database update
 
 FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS final
 # Set the environment variable to listen on the specified port
