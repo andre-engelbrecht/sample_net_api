@@ -4,7 +4,7 @@
     args:
       - '-c'
       - |
-        gcloud secrets versions access latest --secret=projects/102677069671/secrets/sample-api-cloud-build-service-account-key/versions/latest > /workspace/service-account-key.json
+        gcloud secrets versions access latest --secret=sample-api-cloud-build-service-account-key > /workspace/service-account-key.json
 
   - name: 'gcr.io/cloud-builders/gcloud'
     entrypoint: 'bash'
