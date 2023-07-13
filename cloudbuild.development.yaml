@@ -1,18 +1,4 @@
 ﻿steps:
-  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-    entrypoint: 'bash'
-    args:
-      - '-c'
-      - |
-        gcloud secrets versions access latest --secret=sample-api-cloud-build-service-account-key > /workspace/service-account-key.json
-
-  - name: 'gcr.io/cloud-builders/gcloud'
-    entrypoint: 'bash'
-    args:
-      - '-c'
-      - |
-        gcloud auth activate-service-account --key-file=/workspace/service-account-key.json
-
   - name: 'gcr.io/cloud-builders/docker'
     args:
       - 'build'
