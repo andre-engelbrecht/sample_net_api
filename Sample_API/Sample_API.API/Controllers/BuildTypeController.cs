@@ -19,7 +19,7 @@ namespace Sample_API.API.Controllers
         [HttpGet(Name = "GetBuildType")]
         public string Get()
         {
-            return _configuration["BuildType"];
+            return _configuration["BuildType"] ?? "Not-Set";
         }
     }
 }

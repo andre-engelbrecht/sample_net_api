@@ -1,4 +1,20 @@
 ﻿steps:
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        gcloud secrets versions access latest --secret=projects/102677069671/secrets/sample-api-cloud-build-service-account-key/versions/latest > /workspace/service-account-key.json
+
+  - name: 'gcr.io/cloud-builders/gcloud'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        gcloud auth activate-service-account --key-file=/workspace/service-account-key.json
+        gcloud sql instances patch sample-api --assign-ip
+        gcloud sql instances patch sample-api --authorized-networks=sample-api-vpc-network
+
   - name: 'gcr.io/cloud-builders/docker'
     args:
       - 'build'
