@@ -13,7 +13,6 @@
       - |
         gcloud auth activate-service-account --key-file=/workspace/service-account-key.json
         gcloud sql instances patch sample-api --assign-ip
-        gcloud sql instances patch sample-api --authorized-networks=10.128.0.0/20
 
   - name: 'gcr.io/cloud-builders/docker'
     args:
