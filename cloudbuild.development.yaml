@@ -21,9 +21,9 @@
       - '--platform=managed'
       - '--tag=dev-$SHORT_SHA'  # Tag revisions with a unique "revision URL tags"
 
-#options:
-#  pool:
-#    name: 'projects/$PROJECT_ID/locations/$PROJECT_REGION/workerPools/sample-api-pool'
+options:
+  workerPool:
+    name: 'projects/$PROJECT_ID/locations/us-central1/workerPools/sample-api-pool'
 
 substitutions:
   _DEV_SERVICE_URL: 'https://dev-${SHORT_SHA}---sample-api-dev-ccezryvcoa-uc.a.run.app/'
