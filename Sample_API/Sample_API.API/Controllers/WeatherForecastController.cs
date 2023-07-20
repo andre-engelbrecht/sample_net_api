@@ -21,7 +21,7 @@ namespace Sample_API.API.Controllers
             return weatherForecastService.GetWeatherForecast();
         }
 
-        [HttpGet("TestUpdate7")]
+        [HttpGet("TestUpdate8")]
         public string TestUpdate()
         {
             return weatherForecastService.TestUpdate();

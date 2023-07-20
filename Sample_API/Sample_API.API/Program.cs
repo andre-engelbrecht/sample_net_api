@@ -1,4 +1,6 @@
+using Microsoft.EntityFrameworkCore;
 using Sample_API.Core.Services;
+using Sample_API.Data;
 
 namespace Sample_API.API
 {
@@ -9,6 +11,9 @@ namespace Sample_API.API
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+
+            builder.Services.AddDbContext<SampleDBContext>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
             builder.Services.AddControllers();
             

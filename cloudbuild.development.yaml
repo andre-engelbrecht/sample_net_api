@@ -7,6 +7,8 @@
       - '-f'
       - 'Sample_API/Sample_API.API/Dockerfile'  # Update the path to your Dockerfile
       - '.'  # Set the build context to the root directory
+    env:
+      - 'CLOUDSDK_COMPUTE_REGION=us-central1'  # Set the build region to us-central1
 
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'gcr.io/$PROJECT_ID/sample-api']
@@ -17,9 +19,17 @@
       - 'deploy'
       - 'sample-api-dev'  # Update with your service name
       - '--image=gcr.io/$PROJECT_ID/sample-api'
-      - '--region=us-central1'
+      - '--region=us-central1'  # Explicitly set the region to us-central1
       - '--platform=managed'
       - '--tag=dev-$SHORT_SHA'  # Tag revisions with a unique "revision URL tags"
+
+options:
+  pool:
+    name: 'projects/$PROJECT_ID/locations/us-central1/workerPools/sample-api-pool'
+
+substitutions:
+  _DEV_SERVICE_URL: 'https://dev-${SHORT_SHA}---sample-api-dev-ccezryvcoa-uc.a.run.app/'
+  _ENVIRONMENT: 'Development'
 
 images:
   - 'gcr.io/$PROJECT_ID/sample-api'
