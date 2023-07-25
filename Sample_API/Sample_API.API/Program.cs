@@ -29,6 +29,7 @@ namespace Sample_API.API
 
             // Add services
             builder.Services.AddScoped<WeatherForecastService>();
+            builder.Services.AddScoped<DirectoryService>();
 
             var app = builder.Build();
 
@@ -40,6 +41,7 @@ namespace Sample_API.API
             //}
 
             app.UseHttpsRedirection();
+            app.UseStaticFiles();
 
             app.UseAuthorization();
 
