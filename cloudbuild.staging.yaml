@@ -7,6 +7,8 @@
       - '-f'
       - 'Sample_API/Sample_API.API/Dockerfile'  # Update the path to your Dockerfile
       - '.'  # Set the build context to the root directory
+    env:
+      - 'CLOUDSDK_COMPUTE_REGION=us-central1'  # Explicitly set the build region to us-central1
 
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'gcr.io/$PROJECT_ID/sample-api']
@@ -17,12 +19,16 @@
       - 'deploy'
       - 'sample-api-stage'  # Update with your service name
       - '--image=gcr.io/$PROJECT_ID/sample-api'
-      - '--region=us-central1'
+      - '--region=us-central1'  # Explicitly set the region to us-central1
       - '--platform=managed'
+
+options:
+  pool:
+    name: 'projects/$PROJECT_ID/locations/us-central1/workerPools/sample-api-pool' # specify pool to use for builds - region has to match build region
 
 substitutions:
     _DEV_SERVICE_URL: 'https://sample-api-stage-ccezryvcoa-uc.a.run.app'
-    _ENVIRONMENT: 'Staging'
+    _ENVIRONMENT: 'Staging' # Expose substitution variable for use in Slack notification template
 
 images:
   - 'gcr.io/$PROJECT_ID/sample-api'
