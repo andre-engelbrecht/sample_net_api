@@ -1,0 +1,1 @@
+﻿Static files go here. Also, in order to get the parent directoty into the build/publish it needs content (empty folders are excluded).
