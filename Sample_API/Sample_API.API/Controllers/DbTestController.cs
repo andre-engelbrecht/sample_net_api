@@ -16,9 +16,19 @@ namespace Sample_API.API.Controllers
         }
 
         [HttpGet(Name = "TestReadFromDB")]
-        public int TestReadFromDB()
+        public string? TestReadFromDB()
         {
-            return context.Model1.Count();
+            var lastRow = context.Model1.FirstOrDefault();
+
+            if (lastRow == null)
+            {
+                return "Not Found!";
+            }
+            else
+            {
+                return lastRow.Value;
+            }
+
         }
     }
 }
