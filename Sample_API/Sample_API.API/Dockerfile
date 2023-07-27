@@ -7,6 +7,11 @@ COPY ["Sample_API/", "Sample_API/"]
 WORKDIR "/src/Sample_API/Sample_API.API"
 # Define the build argument to receive the connection string
 ARG _CONNECTION_STRING
+# Output the value of the build argument during the build process (for debugging purposes)
+RUN echo "Build Argument _CONNECTION_STRING: $_CONNECTION_STRING"
+RUN echo "$_CONNECTION_STRING"
+RUN echo $_CONNECTION_STRING
+RUN echo _CONNECTION_STRING
 # Restore and build
 RUN dotnet restore "Sample_API.API.csproj"
 RUN dotnet build "Sample_API.API.csproj" -c Release -o /app/build
@@ -15,10 +20,6 @@ RUN dotnet build "Sample_API.API.csproj" -c Release -o /app/build
 FROM build AS publish
 # Publish
 RUN dotnet publish "Sample_API.API.csproj" -c Release -o /app/publish /p:UseAppHost=true
-# Set the environment variable using the build argument
-ENV ConnectionStrings__DefaultConnection=${_CONNECTION_STRING}
-# Output the value of the environment variable during the build process (for debugging purposes)
-RUN echo "ConnectionStrings__DefaultConnection: $ConnectionStrings__DefaultConnection"
 # Run DB migrations
 RUN dotnet tool restore
 RUN dotnet ef database update
