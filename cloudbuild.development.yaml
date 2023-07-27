@@ -3,7 +3,7 @@
     args:
       - 'build'
       - '--build-arg'
-      - '_CONNECTION_STRING=$(_CONNECTION_STRING)'  # Pass the substitution variable as a build argument
+      - '_CONNECTION_STRING=${_CONNECTION_STRING}'  # Pass the substitution variable as a build argument
       - '-t'
       - 'gcr.io/$PROJECT_ID/sample-api'
       - '-f'
@@ -12,18 +12,18 @@
     env:
       - 'CLOUDSDK_COMPUTE_REGION=us-central1'  # Explicitly set the build region to us-central1
 
-  - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'gcr.io/$PROJECT_ID/sample-api']
+  #- name: 'gcr.io/cloud-builders/docker'
+  #  args: ['push', 'gcr.io/$PROJECT_ID/sample-api']
 
-  - name: 'gcr.io/cloud-builders/gcloud'
-    args:
-      - 'run'
-      - 'deploy'
-      - 'sample-api-dev'  # Update with your service name
-      - '--image=gcr.io/$PROJECT_ID/sample-api'
-      - '--region=us-central1'  # Explicitly set the region to us-central1
-      - '--platform=managed'
-      - '--tag=dev-$SHORT_SHA'  # Tag revisions with a unique "revision URL tags"
+  #- name: 'gcr.io/cloud-builders/gcloud'
+  #  args:
+  #    - 'run'
+  #    - 'deploy'
+  #    - 'sample-api-dev'   Update with your service name
+  #    - '--image=gcr.io/$PROJECT_ID/sample-api'
+  #    - '--region=us-central1'   Explicitly set the region to us-central1
+  #    - '--platform=managed'
+  #    - '--tag=dev-$SHORT_SHA'   Tag revisions with a unique "revision URL tags"
 
 options:
   pool:
