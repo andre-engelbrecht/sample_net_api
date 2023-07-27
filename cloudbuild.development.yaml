@@ -9,6 +9,7 @@
       - '.'  # Set the build context to the root directory
     env:
       - 'CLOUDSDK_COMPUTE_REGION=us-central1'  # Explicitly set the build region to us-central1
+      - 'ConnectionStrings__DefaultConnection=${_CONNECTION_STRING}'
 
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'gcr.io/$PROJECT_ID/sample-api']
