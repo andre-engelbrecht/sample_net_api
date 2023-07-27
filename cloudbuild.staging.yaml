@@ -1,7 +1,9 @@
 ﻿steps:
-  - name: 'gcr.io/cloud-builders/docker'
+  - name: 'Build (the image, via Docker)'
     args:
       - 'build'
+      - '--build-arg'
+      - '_CONNECTION_STRING=${_CONNECTION_STRING}'  # Pass the substitution variable as a build argument
       - '-t'
       - 'gcr.io/$PROJECT_ID/sample-api'
       - '-f'
@@ -10,10 +12,10 @@
     env:
       - 'CLOUDSDK_COMPUTE_REGION=us-central1'  # Explicitly set the build region to us-central1
 
-  - name: 'gcr.io/cloud-builders/docker'
+  - name: 'Push (to Artifact Registry)'
     args: ['push', 'gcr.io/$PROJECT_ID/sample-api']
 
-  - name: 'gcr.io/cloud-builders/gcloud'
+  - name: 'Deploy (to Cloud Run)'
     args:
       - 'run'
       - 'deploy'
