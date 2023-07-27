@@ -31,6 +31,7 @@ options:
 substitutions:
   _DEV_SERVICE_URL: 'https://dev-${SHORT_SHA}---sample-api-dev-ccezryvcoa-uc.a.run.app/' # Expose substitution variable for use in Slack notification template
   _ENVIRONMENT: 'Development' # Expose substitution variable for use in Slack notification template
+  _TEST_CONN_STR: '${_CONNECTION_STRING}'
 
 images:
   - 'gcr.io/$PROJECT_ID/sample-api'
