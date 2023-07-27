@@ -17,7 +17,7 @@
     name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'gcr.io/$PROJECT_ID/sample-api']
 
-  - id: 'Deploy to Cloud Run)'
+  - id: 'Deploy to Cloud Run'
     name: 'gcr.io/cloud-builders/gcloud'
     args:
       - 'run'
