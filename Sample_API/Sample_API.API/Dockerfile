@@ -17,7 +17,8 @@ FROM build AS publish
 RUN dotnet publish "Sample_API.API.csproj" -c Release -o /app/publish /p:UseAppHost=true
 # Set the environment variable using the build argument
 ENV ConnectionStrings__DefaultConnection=${_CONNECTION_STRING}
-RUN echo $ConnectionStrings__DefaultConnection
+# Output the value of the environment variable during the build process (for debugging purposes)
+RUN echo "ConnectionStrings__DefaultConnection: $ConnectionStrings__DefaultConnection"
 # Run DB migrations
 RUN dotnet tool restore
 RUN dotnet ef database update
