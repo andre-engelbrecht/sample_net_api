@@ -2,6 +2,8 @@
   - name: 'gcr.io/cloud-builders/docker'
     args:
       - 'build'
+      - '--build-arg'
+      - '_CONNECTION_STRING=$$(_CONNECTION_STRING)'  # Pass the substitution variable as a build argument
       - '-t'
       - 'gcr.io/$PROJECT_ID/sample-api'
       - '-f'
@@ -9,7 +11,6 @@
       - '.'  # Set the build context to the root directory
     env:
       - 'CLOUDSDK_COMPUTE_REGION=us-central1'  # Explicitly set the build region to us-central1
-      - 'ConnectionStrings__DefaultConnection=${_CONNECTION_STRING}'
 
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'gcr.io/$PROJECT_ID/sample-api']
@@ -31,7 +32,6 @@ options:
 substitutions:
   _DEV_SERVICE_URL: 'https://dev-${SHORT_SHA}---sample-api-dev-ccezryvcoa-uc.a.run.app/' # Expose substitution variable for use in Slack notification template
   _ENVIRONMENT: 'Development' # Expose substitution variable for use in Slack notification template
-  _TEST_CONN_STR: '${_CONNECTION_STRING}'
 
 images:
   - 'gcr.io/$PROJECT_ID/sample-api'
