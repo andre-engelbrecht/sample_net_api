@@ -3,7 +3,7 @@
     args:
       - 'build'
       - '--build-arg'
-      - '_CONNECTION_STRING=$$(_CONNECTION_STRING)'  # Pass the substitution variable as a build argument
+      - '_CONNECTION_STRING=$(_CONNECTION_STRING)'  # Pass the substitution variable as a build argument
       - '-t'
       - 'gcr.io/$PROJECT_ID/sample-api'
       - '-f'
