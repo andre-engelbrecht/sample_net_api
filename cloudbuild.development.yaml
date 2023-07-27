@@ -1,5 +1,5 @@
 ﻿steps:
-  - name: 'Build (the image, via Docker)'
+  - name: 'gcr.io/cloud-builders/docker'
     args:
       - 'build'
       - '--build-arg'
@@ -12,10 +12,10 @@
     env:
       - 'CLOUDSDK_COMPUTE_REGION=us-central1'  # Explicitly set the build region to us-central1
 
-  - name: 'Push (to Artifact Registry)'
+  - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'gcr.io/$PROJECT_ID/sample-api']
 
-  - name: 'Deploy (to Cloud Run)'
+  - name: 'gcr.io/cloud-builders/gcloud'
     args:
       - 'run'
       - 'deploy'
