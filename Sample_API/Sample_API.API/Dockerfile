@@ -12,7 +12,8 @@ FROM build AS publish
 # Publish
 RUN dotnet publish "Sample_API.API.csproj" -c Release -o /app/publish /p:UseAppHost=true
 # Run DB migrations
-ECHO $ConnectionStrings__DefaultConnection
+RUN echo "Just testing..."
+RUN echo $ConnectionStrings__DefaultConnection
 RUN dotnet tool restore
 RUN dotnet ef database update
 
